@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Lupus in Tabula</string>
+    <string name="Register">Non sei registrato?</string>
+    <string name="Login">Login</string>
+    <string name="Username">Username</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="reInsertPassword">Conferma password</string>
+    <string name="title">Lupus in Tabula</string>
+    <string name="play">Gioca</string>
+    <string name="options">Opzioni</string>
 </resources>
