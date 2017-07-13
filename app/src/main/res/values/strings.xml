@@ -9,4 +9,5 @@
     <string name="title">Lupus in Tabula</string>
     <string name="play">Gioca</string>
     <string name="options">Opzioni</string>
+    <string name="Logout">Logout</string>
 </resources>

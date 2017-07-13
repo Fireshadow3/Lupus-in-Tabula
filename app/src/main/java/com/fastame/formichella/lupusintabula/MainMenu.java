@@ -37,7 +37,7 @@ public class MainMenu extends Activity {
             @Override
             public void onClick(View view) {
                 //Go to the main activity
-                Intent intent = new Intent(MainMenu.this, MainMenu.class);
+                Intent intent = new Intent(MainMenu.this, options.class);
                 startActivity(intent);
             }
         });
