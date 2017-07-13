@@ -15,16 +15,19 @@ public class MainActivity extends Activity {
 
     private EditText userName;
     private Button loginButton;
+    private Button signUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.login_activity);
         View view = LayoutInflater.from(this).inflate(R.layout.login_activity,null, false);
         setContentView(view);
 
         userName = view.findViewById(R.id.userName);
 
         loginButton = view.findViewById(R.id.loginButton);
+        signUpButton = view.findViewById(R.id.signUpButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +36,15 @@ public class MainActivity extends Activity {
                 //Go to the main activity
                 Intent intent = new Intent(MainActivity.this, MainMenu.class);
                 startActivity(intent);
+            }
+        });
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Go to the register activity
+                Intent intent_2 = new Intent(MainActivity.this, signUp_activity.class);
+                startActivity(intent_2);
             }
         });
 
