@@ -13,4 +13,7 @@
     <string name="signUp">Registrati</string>
     <string name="joinGame">Partecipa ad una partita</string>
     <string name="createGame">Crea una partita</string>
+    <string name="searchingplayers">Ricerca giocatori</string>
+    <string name="Send">Invia</string>
+    <string name="writeSomething">Inserire il messaggio</string>
 </resources>
