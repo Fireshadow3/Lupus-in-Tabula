@@ -18,7 +18,9 @@
         </activity>
         <activity android:name=".signUp_activity" />
         <activity android:name=".MainMenu" />
-        <activity android:name=".options"></activity>
+        <activity android:name=".options" />
+        <activity android:name=".chooseGame" />
+        <activity android:name=".gameScreen"></activity>
     </application>
 
 </manifest>

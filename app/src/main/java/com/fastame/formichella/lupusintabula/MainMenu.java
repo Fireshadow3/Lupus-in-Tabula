@@ -33,6 +33,15 @@ public class MainMenu extends Activity {
         playButton = view.findViewById(R.id.playButton);
         optionButton = view.findViewById(R.id.optionButton);
 
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Go to the main activity
+                Intent intent = new Intent(MainMenu.this, chooseGame.class);
+                startActivity(intent);
+            }
+        });
+
         optionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

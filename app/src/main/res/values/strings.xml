@@ -11,4 +11,6 @@
     <string name="options">Opzioni</string>
     <string name="Logout">Logout</string>
     <string name="signUp">Registrati</string>
+    <string name="joinGame">Partecipa ad una partita</string>
+    <string name="createGame">Crea una partita</string>
 </resources>
