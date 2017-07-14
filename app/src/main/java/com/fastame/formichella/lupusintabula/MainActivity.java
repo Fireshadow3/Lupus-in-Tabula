@@ -16,16 +16,6 @@ public class MainActivity extends Activity {
     private EditText userName;
     private Button loginButton;
     private Button signUpButton;
-    private FirebaseAuth mAuth;
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +23,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.login_activity);
         View view = LayoutInflater.from(this).inflate(R.layout.login_activity,null, false);
         setContentView(view);
-        mAuth = FirebaseAuth.getInstance();
 
         userName = view.findViewById(R.id.userName);
 
