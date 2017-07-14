@@ -21,6 +21,7 @@
         <activity android:name=".options" />
         <activity android:name=".chooseGame" />
         <activity android:name=".gameScreen"></activity>
+
     </application>
 
 </manifest>

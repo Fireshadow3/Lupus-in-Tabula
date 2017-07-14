@@ -10,4 +10,5 @@ public class signUp_activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_activity);
     }
+
 }
