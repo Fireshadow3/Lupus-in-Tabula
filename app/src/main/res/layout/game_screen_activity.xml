@@ -36,18 +36,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/wolfButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="@string/wolfButton"
+            android:visibility="visible" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/farmerButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Button" />
+            android:text="@string/farmerButton" />
     </LinearLayout>
 
     <LinearLayout

@@ -16,4 +16,6 @@
     <string name="searchingplayers">Ricerca giocatori</string>
     <string name="Send">Invia</string>
     <string name="writeSomething">Inserire il messaggio</string>
+    <string name="farmerButton">Impicca</string>
+    <string name="wolfButton">Uccidi</string>
 </resources>
