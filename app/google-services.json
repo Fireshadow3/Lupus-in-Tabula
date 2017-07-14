@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "635690769394",
+    "firebase_url": "https://lupus-in-tabula-60e13.firebaseio.com",
+    "project_id": "lupus-in-tabula-60e13",
+    "storage_bucket": "lupus-in-tabula-60e13.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635690769394:android:4dc50f4ae3692598",
+        "android_client_info": {
+          "package_name": "com.fastame.formichella.lupusintabula"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "635690769394-b4ne6co0eut73ph1hc7ed43j8vk3jtg4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fastame.formichella.lupusintabula",
+            "certificate_hash": "92075e88f4970ac9fc345a937fce4c38cf932219"
+          }
+        },
+        {
+          "client_id": "635690769394-4fe4q047m3i3c3lli8v2gi2c4ss2ggte.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaUliBJ6fHE0ivLnULxAiTqLO2mUNEoG0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "635690769394-4fe4q047m3i3c3lli8v2gi2c4ss2ggte.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
