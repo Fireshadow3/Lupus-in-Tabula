@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,9 @@ public class gameScreen extends Activity {
         final EditText input = (EditText) findViewById(R.id.typeInChat);
         final TextView chat = (TextView)findViewById(R.id.chat);
 
+        //Code for scrolling textView
+        chat.setMovementMethod(new ScrollingMovementMethod());
+
         //Code for buttons
         typeInButton = view.findViewById(R.id.typeInButton);
 
@@ -60,17 +64,17 @@ public class gameScreen extends Activity {
     //https://stackoverflow.com/questions/11434056/how-to-run-a-method-every-x-seconds
     public void tickCycle(final TextView chat){
         final Handler h = new Handler();
-        final int delay = 1000; //milliseconds
+        final int delay = 1; //milliseconds
         //h.postDelayed(new Runnable(){...}, delay)
         h.postDelayed(new Runnable(){
             public void run(){
                 //Cycle start
                 switch (server.isReady()){
                     case 0: //Can continue
-                        chat.setText("0");
+                        chat.setText(chat.getText().toString() + "\n 0");
                         break;
                     case 1:
-                        chat.setText("1");
+                        chat.setText(chat.getText().toString() + "\n 1");
                         break; //Can't continue
                     default:
                         break;
