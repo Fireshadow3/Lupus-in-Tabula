@@ -10,6 +10,37 @@ public class server{
     //Number of current turns (first turn is night)
     private static int turns;
 
+    public static player[] players = new player[8];
+
+    /*
+     * This function registers all of the players with saved data
+     */
+    static private void registerPlayers(int n){
+        server.players[0].name = "Pino"; //Name
+        server.players[0].alive = true; //Alive
+        server.players[0].role = 0; //Farmer
+        server.players[1].name = "Gino";
+        server.players[1].alive = true;
+        server.players[1].role = 0;
+        server.players[2].name = "Rino";
+        server.players[2].alive = true;
+        server.players[2].role = 0;
+        server.players[3].name = "Ermenegildo";
+        server.players[3].alive = true;
+        server.players[3].role = 0;
+        server.players[4].name = "Belardo";
+        server.players[4].alive = true;
+        server.players[4].role = 0;
+        server.players[5].name = "Ursulo";
+        server.players[5].alive = true;
+        server.players[5].role = 1; //Wolf
+        server.players[6].name = "Caio";
+        server.players[6].alive = true;
+        server.players[6].role = 0;
+        server.players[7].name = "VonLowester";
+        server.players[7].alive = true;
+        server.players[7].role = 0;
+    }
     static private int randomNumber(int n){
         Random rand = new Random();
         int j = rand.nextInt(n); //If bound to 20, gives n such that 0 <= n < 20

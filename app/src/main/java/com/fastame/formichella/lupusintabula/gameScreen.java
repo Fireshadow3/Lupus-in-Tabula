@@ -8,9 +8,14 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.fastame.formichella.lupusintabula.server;
 import java.util.Random;
 
@@ -40,6 +45,27 @@ public class gameScreen extends Activity {
         final Button wolfButton = (Button) findViewById(R.id.wolfButton);
         final Button farmerButton = (Button) findViewById(R.id.farmerButton);
 
+        //Code for spinner http://corsiandroid.it/spinner/esempio-spinner
+        Spinner farmerSpinner = (Spinner)findViewById(R.id.farmerSpinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_spinner_item,
+                new String[]{"pippo","pluto","paperino","topolino"}
+        );
+        farmerSpinner.setAdapter(adapter);
+
+        farmerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> adapter, View view,int pos, long id) {
+                String selected = (String)adapter.getItemAtPosition(pos);
+                Toast.makeText(
+                        getApplicationContext(),
+                        "Hai selezionato "+selected,
+                        Toast.LENGTH_LONG
+                ).show();
+            }
+            public void onNothingSelected(AdapterView<?> arg0) {}
+        });
+
         //Code for scrolling textView
         chat.setMovementMethod(new ScrollingMovementMethod());
 
@@ -59,16 +85,24 @@ public class gameScreen extends Activity {
             }
         });
 
-        tickCycle(chat,wolfButton,farmerButton);
+        tickCycle(chat,wolfButton,farmerButton,farmerSpinner);
     }
 
 
     //https://stackoverflow.com/questions/11434056/how-to-run-a-method-every-x-seconds
-    public void tickCycle(final TextView chat, final Button wolfButton, final Button farmerButton){
+    public void tickCycle(final TextView chat, final Button wolfButton, final Button farmerButton, Spinner farmerSpinner){
         final Handler h = new Handler();
         final int delay = 1; //milliseconds
         //We start a simulated server
         final server gameServer;
+        //Code for spinner
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_spinner_item,
+                new String[]{server.players[0].name,"pluto","paperino","topolino"}
+        );
+        farmerSpinner.setAdapter(adapter);
+
         //h.postDelayed(new Runnable(){...}, delay)
         h.postDelayed(new Runnable(){
             public void run(){

@@ -19,6 +19,16 @@
         app:layout_constraintBottom_toTopOf="@+id/scrollView">
 
         <!-- https://stackoverflow.com/questions/8855791/how-to-create-standard-borderless-buttons-like-in-the-design-guidline-mentioned -->
+
+        <Spinner
+            android:id="@+id/farmerSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:scrollbars="horizontal"
+            android:textAlignment="center"
+            android:verticalScrollbarPosition="right" />
+
         <Button
             android:id="@+id/wolfButton"
             android:layout_width="wrap_content"
