@@ -94,7 +94,6 @@
             android:layout_marginTop="0dp"
             android:maxLines="800"
             android:scrollbars="vertical"
-            android:text="È un nuovo giorno! \nGiocatore 1: Ciao! \nGiocatore 2: hey \nLa notte sta calando... \nGiocatore 4 è stato ucciso! \nGiocatore 7: Nooo"
             android:textAlignment="textStart"
             app:layout_constraintBottom_toTopOf="@+id/typeInLayout"
             app:layout_constraintEnd_toEndOf="parent"

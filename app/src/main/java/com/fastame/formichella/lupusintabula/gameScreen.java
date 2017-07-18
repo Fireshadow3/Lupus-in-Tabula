@@ -37,6 +37,8 @@ public class gameScreen extends Activity {
         //Code for textview (chat moved to top)
         final EditText input = (EditText) findViewById(R.id.typeInChat);
         final TextView chat = (TextView)findViewById(R.id.chat);
+        final Button wolfButton = (Button) findViewById(R.id.wolfButton);
+        final Button farmerButton = (Button) findViewById(R.id.farmerButton);
 
         //Code for scrolling textView
         chat.setMovementMethod(new ScrollingMovementMethod());
@@ -57,26 +59,46 @@ public class gameScreen extends Activity {
             }
         });
 
-        tickCycle(chat);
+        tickCycle(chat,wolfButton,farmerButton);
     }
 
 
     //https://stackoverflow.com/questions/11434056/how-to-run-a-method-every-x-seconds
-    public void tickCycle(final TextView chat){
+    public void tickCycle(final TextView chat, final Button wolfButton, final Button farmerButton){
         final Handler h = new Handler();
         final int delay = 1; //milliseconds
+        //We start a simulated server
+        final server gameServer;
         //h.postDelayed(new Runnable(){...}, delay)
         h.postDelayed(new Runnable(){
             public void run(){
                 //Cycle start
+                int turns;
+                int role;
+                role = server.getGameClass();
+                turns = server.getTurns();
+                //Decide whatever to delete the wolfButton
+                switch (role){
+                    case 0: //Farmer
+                        wolfButton.setVisibility(View.GONE);
+                        break;
+                    case 1: //Wolf
+                        break;
+                }
+                //If it's night
+                if(turns%2==0){
+
+                }
+
                 switch (server.isReady()){
                     case 0: //Can continue
-                        chat.setText(chat.getText().toString() + "\n 0");
+                        chat.setText(chat.getText().toString() + "\nLet's continue!");
                         break;
                     case 1:
-                        chat.setText(chat.getText().toString() + "\n 1");
+                        chat.setText(chat.getText().toString() + "\nThere was a problem!");
                         break; //Can't continue
                     default:
+                        chat.setText(chat.getText().toString() + "\nThis can't be true!");
                         break;
                 }
 
