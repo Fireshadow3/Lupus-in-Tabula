@@ -1,5 +1,7 @@
 package com.fastame.formichella.lupusintabula;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -10,12 +12,24 @@ public class server{
     //Number of current turns (first turn is night)
     private static int turns;
 
+    //SOLUTION TO ALLOCATION OF MULTIPLE OBJECTS IN AN ARRAY https://stackoverflow.com/questions/5364278/creating-an-array-of-objects-in-java
     public static player[] players = new player[8];
+
+    players[0] = new player();
+    players[1] = new player();
+    players[2] = new player();
+    players[3] = new player();
+    players[4] = new player();
+    players[5] = new player();
+    players[6] = new player();
+    players[7] = new player();
+
+    //public static player[] players = new player[8];
 
     /*
      * This function registers all of the players with saved data
      */
-    static private void registerPlayers(int n){
+    public void registerPlayers(){
         server.players[0].name = "Pino"; //Name
         server.players[0].alive = true; //Alive
         server.players[0].role = 0; //Farmer

@@ -5,9 +5,9 @@ package com.fastame.formichella.lupusintabula;
  */
 
 public class player {
-    public static String name;
-    public static boolean alive;
-    public static int role; //wolf 1 farmer 0
+    public String name;
+    static public boolean alive;
+    static public int role; //wolf 1 farmer 0
 
     /*
     * Kills another player by setting its "alive" value to false

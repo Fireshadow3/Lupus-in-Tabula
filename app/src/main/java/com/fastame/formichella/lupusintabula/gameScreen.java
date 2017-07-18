@@ -17,6 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fastame.formichella.lupusintabula.server;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static android.content.ContentValues.TAG;
@@ -25,6 +28,7 @@ import static com.fastame.formichella.lupusintabula.server.*;
 public class gameScreen extends Activity {
 
     private Button typeInButton;
+    List<player> playerArrayList = new ArrayList<>();
 
 
     @Override
@@ -33,6 +37,7 @@ public class gameScreen extends Activity {
         setContentView(R.layout.game_screen_activity);
         View view = LayoutInflater.from(this).inflate(R.layout.game_screen_activity,null, false);
         setContentView(view);
+        playerArrayList.get(0).//CONTINUA DA QUI
 
         //If player == farmer then
         //wolfButton = gone (invisible)
@@ -81,7 +86,7 @@ public class gameScreen extends Activity {
                 stringChat = chat.getText().toString();
                 stringInput = input.getText().toString();
                 stringChat = stringChat + "\n" + "Tu: " + stringInput;
-                chat.setText(stringChat);
+                chat.setText(strinCgChat);
             }
         });
 
@@ -89,17 +94,19 @@ public class gameScreen extends Activity {
     }
 
 
-    //https://stackoverflow.com/questions/11434056/how-to-run-a-method-every-x-seconds
+        //https://stackoverflow.com/questions/11434056/how-to-run-a-method-every-x-seconds
     public void tickCycle(final TextView chat, final Button wolfButton, final Button farmerButton, Spinner farmerSpinner){
         final Handler h = new Handler();
         final int delay = 1; //milliseconds
         //We start a simulated server
-        final server gameServer;
+        //final server gameServer = new server();
+        gameServer.registerPlayers();
         //Code for spinner
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this,
                 android.R.layout.simple_spinner_item,
-                new String[]{server.players[0].name,"pluto","paperino","topolino"}
+                new String[]{gameServer.players[0].name,gameServer.players[1].name,gameServer.players[2].name,gameServer.players[3].name,gameServer.players[4].name,gameServer.players[5].name,gameServer.players[6].name,gameServer.players[7].name}
         );
         farmerSpinner.setAdapter(adapter);
 
