@@ -1,19 +1,39 @@
 package com.fastame.formichella.lupusintabula;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Alessandro on 18/07/2017.
  */
-
+  //public List<player> players = new ArrayList<>();
 public class player {
-    public String name;
-    static public boolean alive;
-    static public int role; //wolf 1 farmer 0
-
+    public List<name> names = new ArrayList<>();
+    public class name {
+    public String nome;
+    }
+    public List<alive> alives = new ArrayList<>();
+    public class alive {
+        public boolean vivo;
+    }
+    public List<role> roles = new ArrayList<>();
+    public class role{
+    public int ruolo; //wolf 1 farmer 0
+        }
     /*
     * Kills another player by setting its "alive" value to false
     */
     static public void killPlayer(player guyToKill){
         guyToKill.alive = false;
+    }
+
+    public player(){}
+
+    public String getPlayerName(){
+        return name;
+    }
+    public void setPlayerName(String string){
+        name = string;
     }
     /*int m=8;
     int array[int m];
