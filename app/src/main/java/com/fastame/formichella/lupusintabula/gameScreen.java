@@ -33,6 +33,7 @@ public class gameScreen extends Activity {
     List<player> playerArrayList = new ArrayList<>();
     final gameServer myGameServer = new gameServer();
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //Set activity content
@@ -48,6 +49,7 @@ public class gameScreen extends Activity {
         final TextView chat = (TextView)findViewById(R.id.chat);
         final Button wolfButton = (Button) findViewById(R.id.wolfButton);
         final Button farmerButton = (Button) findViewById(R.id.farmerButton);
+        int o=0;
 
         //Code for spinner http://corsiandroid.it/spinner/esempio-spinner
         final Spinner farmerSpinner = (Spinner)findViewById(R.id.farmerSpinner);
@@ -135,15 +137,18 @@ public class gameScreen extends Activity {
                         farmerSpinner.setSelection(positionOfSelectedItem);
                     }
                 }
+                //When the button is pressed go on next turn
+                myGameServer.turns++;
+                o=o++;
             }
         });
 
-        tickCycle(chat,wolfButton,farmerButton,farmerSpinner);
+        tickCycle(chat,wolfButton,farmerButton,farmerSpinner,o);
     }
 
     //Main cycle code
         //https://stackoverflow.com/questions/11434056/how-to-run-a-method-every-x-seconds
-    public void tickCycle(final TextView chat, final Button wolfButton, final Button farmerButton, final Spinner farmerSpinner){
+    public void tickCycle(final TextView chat, final Button wolfButton, final Button farmerButton, final Spinner farmerSpinner, final int o){
         final Handler h = new Handler();
         final int delay = 100; //milliseconds
         //We start a simulated server (MOVED TO TOP)
@@ -197,11 +202,25 @@ public class gameScreen extends Activity {
                         break;
                 }
                 //If it's night
-                if(turns%2==0){
+                if(myGameServer.isReady==false){
+                    chat.setText(chat.getText().toString() + "\nArriva la notte"+"\nLupo scegli chi uccidere");
+                    while (o==0){}
+                    chat.setText(chat.getText().toString() + "\nArriva il giorno"+"\nContadini scegliete chi uccidere");
+                    myGameServer.isReady= true;
+                }
+                else if (myGameServer.isReady==true){
 
+                    myGameServer.isReady=true;
+                        o=0;
                 }
 
-                switch (myGameServer.isReady()){
+
+
+
+
+
+                /*
+                    switch (myGameServer.isReady()){
                     case 0: //Can continue
                         chat.setText(chat.getText().toString() + "\nLet's continue!");
                         break;
@@ -212,7 +231,7 @@ public class gameScreen extends Activity {
                         chat.setText(chat.getText().toString() + "\nThis can't be true!");
                         break;
                 }
-
+                */
 
                 //Cycle end
                 h.postDelayed(this, delay);

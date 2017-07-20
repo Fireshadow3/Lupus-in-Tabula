@@ -11,8 +11,8 @@ import com.fastame.formichella.lupusintabula.player;
 
 public class gameServer{
     //Number of current turns (first turn is night)
-    private static int turns;
-
+    public static int turns;
+    public boolean isReady = false;
     //SOLUTION TO ALLOCATION OF MULTIPLE OBJECTS IN AN ARRAY https://stackoverflow.com/questions/5364278/creating-an-array-of-objects-in-java
     public List<player> players = new ArrayList<>();
 
@@ -77,14 +77,14 @@ public class gameServer{
     /*  0: Can continue playing
     *   1: Can't continue playing
     */
-    public int isReady(){
+    /*public int isReady(){
         int n = randomNumber(1);
         //If the server is ready
         if(n==0){
             gameServer.turns = gameServer.turns+1;
         }
         return n;
-    }
+    }*/
     static public int getTurns(){
         return gameServer.turns;
     }
