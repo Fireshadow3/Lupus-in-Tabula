@@ -31,7 +31,7 @@ public class gameScreen extends Activity {
     private Button typeInButton;
     //Array of all players
     List<player> playerArrayList = new ArrayList<>();
-
+    final gameServer myGameServer = new gameServer();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,11 +60,17 @@ public class gameScreen extends Activity {
         farmerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> adapter, View view,int pos, long id) {
                 String selected = (String)adapter.getItemAtPosition(pos);
-                Toast.makeText(
-                        getApplicationContext(),
-                        "Hai selezionato "+selected,
-                        Toast.LENGTH_LONG
-                ).show();
+                //If the player is dead don't say anything
+                if (myGameServer.players.get(farmerSpinner.getSelectedItemPosition()).alive == false){}
+                else {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            "Hai selezionato " + selected,
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+                //Find the player and then set the selection to it
+                farmerSpinner.setSelection(pos/*farmerSpinner.getSelectedItemPosition()*/); //Also mySpinner.setSelection(arrayAdapter.getPosition("Category 2"));
             }
             public void onNothingSelected(AdapterView<?> arg0) {}
         });
@@ -88,16 +94,60 @@ public class gameScreen extends Activity {
             }
         });
 
+        farmerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (myGameServer.players.get(farmerSpinner.getSelectedItemPosition()).alive == false){
+                    Toast.makeText(
+                            getApplicationContext(),
+                            myGameServer.players.get(farmerSpinner.getSelectedItemPosition()).name + " è già stato ucciso! ",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+                else {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            myGameServer.players.get(farmerSpinner.getSelectedItemPosition()).name + " è stato ucciso! ",
+                            Toast.LENGTH_SHORT
+                    ).show();
+                }
+                //Then kill player
+                myGameServer.players.get(farmerSpinner.getSelectedItemPosition()).alive = false;
+                //Code to show dead players
+                //For every player check
+                for (int i=0; i<8;i++){
+                    //If current player is dead
+                    if(myGameServer.players.get(i).alive == false){
+                        //Then if he wasn't already killed set is name to //name//
+                        if(myGameServer.players.get(i).isKilled == false){
+                            myGameServer.players.get(i).isKilled = true;
+                            myGameServer.players.get(i).name = "DEAD - " + myGameServer.players.get(i).name; //"//" + myGameServer.players.get(i).name + "//";
+                        }
+                        final ArrayAdapter<String> adapterone = new ArrayAdapter<String>(
+                                getApplicationContext(),
+                                android.R.layout.simple_spinner_item,
+                                new String[]{myGameServer.players.get(0).name,myGameServer.players.get(1).name,myGameServer.players.get(2).name,myGameServer.players.get(3).name,myGameServer.players.get(4).name,myGameServer.players.get(5).name,myGameServer.players.get(6).name,myGameServer.players.get(7).name}
+                                //playerArrayList;
+                        );
+                        //Find the player and then set the selection to it
+                        int positionOfSelectedItem = farmerSpinner.getSelectedItemPosition(); //Also mySpinner.setSelection(arrayAdapter.getPosition("Category 2"));
+                        farmerSpinner.setAdapter(adapterone);
+                        farmerSpinner.setSelection(positionOfSelectedItem);
+                    }
+                }
+            }
+        });
+
         tickCycle(chat,wolfButton,farmerButton,farmerSpinner);
     }
 
     //Main cycle code
         //https://stackoverflow.com/questions/11434056/how-to-run-a-method-every-x-seconds
-    public void tickCycle(final TextView chat, final Button wolfButton, final Button farmerButton, Spinner farmerSpinner){
+    public void tickCycle(final TextView chat, final Button wolfButton, final Button farmerButton, final Spinner farmerSpinner){
         final Handler h = new Handler();
-        final int delay = 1; //milliseconds
-        //We start a simulated server
-        final gameServer myGameServer = new gameServer();
+        final int delay = 100; //milliseconds
+        //We start a simulated server (MOVED TO TOP)
+        //final gameServer myGameServer = new gameServer();
         //We register the new players
         playerArrayList = myGameServer.registerPlayers();
         List<String> playerNames = new ArrayList<>();
@@ -112,15 +162,15 @@ public class gameScreen extends Activity {
         //playerArrayList.set(0,player).name = gameServer.players.get(0).name;
 
         //Code for spinner
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                //this,
-                //android.R.layout.simple_spinner_item,
-                //new String[]{myGameServer.players.get(0).name,myGameServer.players.get(1).name,myGameServer.players.get(2).name,myGameServer.players.get(3).name,myGameServer.players.get(4).name,myGameServer.players.get(5).getPlayerName(),myGameServer.players.get(6).name,myGameServer.players.get(7).name}
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this,
+                android.R.layout.simple_spinner_item,
+                new String[]{myGameServer.players.get(0).name,myGameServer.players.get(1).name,myGameServer.players.get(2).name,myGameServer.players.get(3).name,myGameServer.players.get(4).name,myGameServer.players.get(5).name,myGameServer.players.get(6).name,myGameServer.players.get(7).name}
                 //playerArrayList;
-        //);
-        //farmerSpinner.setAdapter(adapter);
-        farmerSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, playerNames));
-
+        );
+        farmerSpinner.setAdapter(adapter);
+        //farmerSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, playerNames));
+        //adapter.clear();
 
         //h.postDelayed(new Runnable(){...}, delay)
         h.postDelayed(new Runnable(){
@@ -128,6 +178,14 @@ public class gameScreen extends Activity {
                 //Cycle start
                 int turns;
                 int role;
+
+
+                //Then update she spinner
+                //adapter.notifyDataSetChanged();
+                //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,new String[]{myGameServer.players.get(0).name,myGameServer.players.get(1).name,myGameServer.players.get(2).name,myGameServer.players.get(3).name,myGameServer.players.get(4).name,myGameServer.players.get(5).name,myGameServer.players.get(6).name,myGameServer.players.get(7).name});
+                //farmerSpinner.setAdapter(adapter);
+                //End code
+
                 role = myGameServer.getGameClass();
                 turns = myGameServer.getTurns();
                 //Decide whatever to delete the wolfButton

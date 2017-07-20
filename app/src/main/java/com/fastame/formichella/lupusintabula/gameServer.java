@@ -22,43 +22,42 @@ public class gameServer{
      * This function registers all of the players with saved data
      */
     public List<player> registerPlayers(){
-        player user = new player();
-        user.name = "User";
-        user.alive = true;
-        user.role = 0;
 
-        players.add(0,user);
-        players.set(0,user).name = "Pino"; //Name
-        players.set(0,user).alive = true; //Alive
-        players.set(0,user).role = 0; //Farmer
-        players.add(1,user);
-        players.set(1,user).name = "Gino";
-        players.set(1,user).alive = true;
-        players.set(1,user).role = 0;
-        players.add(2,user);
-        players.set(2,user).name = "Rino";
-        players.set(2,user).alive = true;
-        players.set(2,user).role = 0;
-        players.add(3,user);
-        players.set(3,user).name = "Ermenegildo";
-        players.set(3,user).alive = true;
-        players.set(3,user).role = 0;
-        players.add(4,user);
-        players.set(4,user).name = "Belardo";
-        players.set(4,user).alive = true;
-        players.set(4,user).role = 0;
-        players.add(5,user);
-        players.set(5,user).name = "Ursulo";
-        players.set(5,user).alive = true;
-        players.set(5,user).role = 1; //Wolf
-        players.add(6,user);
-        players.set(6,user).name = "Caio";
-        players.set(6,user).alive = true;
-        players.set(6,user).role = 0;
-        players.add(7,user);
-        players.set(7,user).name = "VonLowester";
-        players.set(7,user).alive = true;
-        players.set(7,user).role = 0;
+        for (int i=0; i<8;i++){
+
+            player user = new player();
+            user.name = "User";
+            user.alive = true;
+            user.role = 0;
+
+            players.add(i,user);
+        }
+
+
+        players.get(0).name = "Pino"; //Name
+        players.get(0).alive = true; //Alive
+        players.get(0).role = 0; //Farmer
+        players.get(1).name = "Gino";
+        players.get(1).alive = true;
+        players.get(1).role = 0;
+        players.get(2).name = "Rino";
+        players.get(2).alive = true;
+        players.get(2).role = 0;
+        players.get(3).name = "Ermenegildo";
+        players.get(3).alive = true;
+        players.get(3).role = 0;
+        players.get(4).name = "Belardo";
+        players.get(4).alive = true;
+        players.get(4).role = 0;
+        players.get(5).name = "Ursulo";
+        players.get(5).alive = true;
+        players.get(5).role = 1; //Wolf
+        players.get(6).name = "Caio";
+        players.get(6).alive = true;
+        players.get(6).role = 0;
+        players.get(7).name = "VonLowester";
+        players.get(7).alive = true;
+        players.get(7).role = 0;
         return players;
     }
     static private int randomNumber(int n){

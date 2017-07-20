@@ -8,18 +8,11 @@ import java.util.List;
  */
   //public List<player> players = new ArrayList<>();
 public class player {
-    public List<name> names = new ArrayList<>();
-    public class name {
-    public String nome;
-    }
-    public List<alive> alives = new ArrayList<>();
-    public class alive {
-        public boolean vivo;
-    }
-    public List<role> roles = new ArrayList<>();
-    public class role{
-    public int ruolo; //wolf 1 farmer 0
-        }
+    public String name;
+    public boolean alive;
+    public boolean isKilled;
+    public int role; //wolf 1 farmer 0
+
     /*
     * Kills another player by setting its "alive" value to false
     */
