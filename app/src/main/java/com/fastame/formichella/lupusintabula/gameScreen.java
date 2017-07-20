@@ -139,7 +139,8 @@ public class gameScreen extends Activity {
                 }
                 //When the button is pressed go on next turn
                 myGameServer.turns++;
-                o=o++;
+                myGameServer.alreadyWrote = false;
+                myGameServer.isReady=true;
             }
         });
 
@@ -203,15 +204,16 @@ public class gameScreen extends Activity {
                 }
                 //If it's night
                 if(myGameServer.isReady==false){
-                    chat.setText(chat.getText().toString() + "\nArriva la notte"+"\nLupo scegli chi uccidere");
-                    while (o==0){}
-                    chat.setText(chat.getText().toString() + "\nArriva il giorno"+"\nContadini scegliete chi uccidere");
-                    myGameServer.isReady= true;
+
                 }
                 else if (myGameServer.isReady==true){
-
-                    myGameServer.isReady=true;
-                        o=0;
+                    //myGameServer.isReady=false;
+                    if(myGameServer.alreadyWrote == false) {
+                        chat.setText(chat.getText().toString() + "\nArriva la notte" + "\nLupo scegli chi uccidere");
+                        chat.setText(chat.getText().toString() + "\nArriva il giorno" + "\nContadini scegliete chi uccidere");
+                        myGameServer.isReady = false;
+                        myGameServer.alreadyWrote = true;
+                    }
                 }
 
 

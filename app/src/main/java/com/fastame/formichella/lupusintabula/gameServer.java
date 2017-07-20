@@ -12,7 +12,9 @@ import com.fastame.formichella.lupusintabula.player;
 public class gameServer{
     //Number of current turns (first turn is night)
     public static int turns;
-    public boolean isReady = false;
+    public boolean isReady = true;
+    //This variable says if there was already said text
+    public boolean alreadyWrote = false;
     //SOLUTION TO ALLOCATION OF MULTIPLE OBJECTS IN AN ARRAY https://stackoverflow.com/questions/5364278/creating-an-array-of-objects-in-java
     public List<player> players = new ArrayList<>();
 
