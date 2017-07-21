@@ -1,5 +1,7 @@
 package com.fastame.formichella.lupusintabula;
 
+import android.content.Intent;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -9,30 +11,30 @@ import com.fastame.formichella.lupusintabula.player;
  * Created by Alessandro on 17/07/2017.
  */
 
-public class gameServer{
+public class gameServer {
     //Number of current turns (first turn is night)
     public static int turns;
     public boolean isReady = true;
     //This variable says if there was already said text
     public boolean alreadyWrote = false;
     //SOLUTION TO ALLOCATION OF MULTIPLE OBJECTS IN AN ARRAY https://stackoverflow.com/questions/5364278/creating-an-array-of-objects-in-java
-    public List<player> players = new ArrayList<>();
+    static public List<player> players = new ArrayList<>();
 
     //public static player[] players = new player[8];
 
     /*
      * This function registers all of the players with saved data
      */
-    public List<player> registerPlayers(){
+    public List<player> registerPlayers() {
 
-        for (int i=0; i<8;i++){
+        for (int i = 0; i < 8; i++) {
 
             player user = new player();
             user.name = "User";
             user.alive = true;
             user.role = 0;
 
-            players.add(i,user);
+            players.add(i, user);
         }
 
 
@@ -62,19 +64,31 @@ public class gameServer{
         players.get(7).role = 0;
         return players;
     }
-    private int randomNumber(int n){
+
+    static public boolean isEveryoneDead() {
+        boolean everyoneDead = true;
+        for (int i = 0; i < 8; i++) {
+            if (gameServer.players.get(i).alive == true) {
+                everyoneDead = false;
+            }
+        }
+        return everyoneDead;
+    }
+    private int randomNumber(int n) {
         Random rand = new Random();
         int j = rand.nextInt(n); //If bound to 20, gives n such that 0 <= n < 20
         return j;
     }
+
     //Fetches a response from the com.fastame.formichella.lupusintabula.server. If:
     /*  0: Farmer
     *   1: Wolf
     */
-    public int getGameClass(){
+    public int getGameClass() {
         int n = randomNumber(2);
         return n;
     }
+
     //Fetches a response from the com.fastame.formichella.lupusintabula.server. If:
     /*  0: Can continue playing
     *   1: Can't continue playing
@@ -87,8 +101,10 @@ public class gameServer{
         }
         return n;
     }*/
-    static public int getTurns(){
+    static public int getTurns() {
         return gameServer.turns;
     }
+
+
 }
 //https://stackoverflow.com/questions/11434056/how-to-run-a-method-every-x-seconds

@@ -225,7 +225,10 @@ public class gameScreen extends Activity {
                     }
                 }
 
-
+                if(gameServer.isEveryoneDead() == true){
+                    Intent intent = new Intent(gameScreen.this, ENDING.class);
+                    startActivity(intent);
+                }
 
 
 
