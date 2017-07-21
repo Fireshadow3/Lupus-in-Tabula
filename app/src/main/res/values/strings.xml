@@ -18,4 +18,5 @@
     <string name="writeSomething">Inserire il messaggio</string>
     <string name="farmerButton">Impicca</string>
     <string name="wolfButton">Uccidi</string>
+    <string name="appname">Lupus in tabula</string>
 </resources>

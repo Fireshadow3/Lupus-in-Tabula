@@ -112,6 +112,9 @@ public class gameScreen extends Activity {
                             myGameServer.players.get(farmerSpinner.getSelectedItemPosition()).name + " è stato ucciso! ",
                             Toast.LENGTH_SHORT
                     ).show();
+                    //When the button is pressed go on next turn
+                    myGameServer.isReady=true;
+                    myGameServer.turns++;
                 }
                 //Then kill player
                 myGameServer.players.get(farmerSpinner.getSelectedItemPosition()).alive = false;
@@ -137,10 +140,7 @@ public class gameScreen extends Activity {
                         farmerSpinner.setSelection(positionOfSelectedItem);
                     }
                 }
-                //When the button is pressed go on next turn
-                myGameServer.turns++;
                 myGameServer.alreadyWrote = false;
-                myGameServer.isReady=true;
             }
         });
 
@@ -178,30 +178,32 @@ public class gameScreen extends Activity {
         //farmerSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, playerNames));
         //adapter.clear();
 
+        //Decide whatever to delete the wolfButton
+        int role;
+        role = myGameServer.getGameClass();
+        switch (role){
+            case 0: //Farmer
+                wolfButton.setVisibility(View.GONE);
+                chat.setText(chat.getText().toString() + "\nYou are a " + "(" + role + ") farmer");
+                break;
+            case 1: //Wolf
+                chat.setText(chat.getText().toString() + "\nYou are a " + "(" + role + ") wolf");
+                break;
+        }
+
         //h.postDelayed(new Runnable(){...}, delay)
         h.postDelayed(new Runnable(){
             public void run(){
                 //Cycle start
                 int turns;
-                int role;
-
-
                 //Then update she spinner
                 //adapter.notifyDataSetChanged();
                 //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,new String[]{myGameServer.players.get(0).name,myGameServer.players.get(1).name,myGameServer.players.get(2).name,myGameServer.players.get(3).name,myGameServer.players.get(4).name,myGameServer.players.get(5).name,myGameServer.players.get(6).name,myGameServer.players.get(7).name});
                 //farmerSpinner.setAdapter(adapter);
                 //End code
 
-                role = myGameServer.getGameClass();
                 turns = myGameServer.getTurns();
-                //Decide whatever to delete the wolfButton
-                switch (role){
-                    case 0: //Farmer
-                        wolfButton.setVisibility(View.GONE);
-                        break;
-                    case 1: //Wolf
-                        break;
-                }
+
                 //If it's night
                 if(myGameServer.isReady==false){
 
@@ -209,10 +211,17 @@ public class gameScreen extends Activity {
                 else if (myGameServer.isReady==true){
                     //myGameServer.isReady=false;
                     if(myGameServer.alreadyWrote == false) {
-                        chat.setText(chat.getText().toString() + "\nArriva la notte" + "\nLupo scegli chi uccidere");
-                        chat.setText(chat.getText().toString() + "\nArriva il giorno" + "\nContadini scegliete chi uccidere");
-                        myGameServer.isReady = false;
-                        myGameServer.alreadyWrote = true;
+
+                        if (myGameServer.turns % 2 == 0) { //Se è notte
+                            chat.setText(chat.getText().toString() + "\n[Arriva la NOTTE]" + "\nLupo scegli chi uccidere!");
+                            myGameServer.isReady = false;
+                            myGameServer.alreadyWrote = true;
+                        }
+                        else {
+                            chat.setText(chat.getText().toString() + "\n[Arriva il GIORNO]" + "\nContadini scegliete chi uccidere!");
+                            myGameServer.isReady = false;
+                            myGameServer.alreadyWrote = true;
+                        }
                     }
                 }
 

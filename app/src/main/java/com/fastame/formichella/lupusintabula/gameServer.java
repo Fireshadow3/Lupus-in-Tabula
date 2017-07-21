@@ -62,7 +62,7 @@ public class gameServer{
         players.get(7).role = 0;
         return players;
     }
-    static private int randomNumber(int n){
+    private int randomNumber(int n){
         Random rand = new Random();
         int j = rand.nextInt(n); //If bound to 20, gives n such that 0 <= n < 20
         return j;
@@ -71,8 +71,8 @@ public class gameServer{
     /*  0: Farmer
     *   1: Wolf
     */
-    static public int getGameClass(){
-        int n = randomNumber(1);
+    public int getGameClass(){
+        int n = randomNumber(2);
         return n;
     }
     //Fetches a response from the com.fastame.formichella.lupusintabula.server. If:
