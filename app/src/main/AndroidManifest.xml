@@ -10,13 +10,13 @@
         android:theme="@style/AppTheme"
         android:icon="@mipmap/master_chief">
 
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".gameScreen"/>
         <activity android:name=".signUp_activity" />
         <activity android:name=".MainMenu" />
         <activity android:name=".options" />
         <activity android:name=".chooseGame" />
         <activity android:name=".Main" />
-        <activity android:name=".gameScreen">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
